@@ -1,95 +1,147 @@
-# E-Commerce Sales & Customer Analytics
+# 🛒 E-Commerce Sales & Customer Analytics
 
 ### End-to-End Data Analytics Project | Python | SQL | PostgreSQL | Power BI
 
-An end-to-end E-Commerce Analytics project focused on understanding sales performance, customer purchasing behavior, product performance, customer value, and revenue trends.
+An end-to-end E-Commerce Analytics project focused on understanding **sales performance, revenue trends, customer purchasing behavior, product performance, geographic performance, and customer value**.
 
-The project combines **Python, SQL, PostgreSQL, and Power BI** to transform transactional retail data into actionable business insights.
+The project transforms raw transactional retail data into structured business analysis using **Python, Pandas, NumPy, SQL, PostgreSQL, RFM customer segmentation, and Power BI**.
 
 ---
 
-## Project Overview
+## 📌 Table of Contents
 
-E-commerce businesses generate large volumes of transactional data that can be used to understand revenue performance, customer behavior, product demand, and purchasing patterns.
+- [Project Overview](#-project-overview)
+- [Business Problem](#-business-problem)
+- [Business Objectives](#-business-objectives)
+- [Dataset](#-dataset)
+- [Tools & Technologies](#-tools--technologies)
+- [Analytical Workflow](#-analytical-workflow)
+- [Data Validation](#-data-validation)
+- [Data Cleaning](#-data-cleaning)
+- [Cleaned Dataset](#-cleaned-dataset)
+- [Feature Engineering](#-feature-engineering)
+- [Key Performance Indicators](#-key-performance-indicators)
+- [Exploratory Data Analysis](#-exploratory-data-analysis)
+- [Sales Performance Analysis](#-sales-performance-analysis)
+- [Product Analysis](#-product-analysis)
+- [Geographic Analysis](#-geographic-analysis)
+- [Customer Analysis](#-customer-analysis)
+- [RFM Customer Segmentation](#-rfm-customer-segmentation)
+- [RFM Segment Results](#-rfm-segment-results)
+- [PostgreSQL & SQL Analysis](#-postgresql--sql-analysis)
+- [Power BI Dashboard](#-power-bi-dashboard)
+- [Current Business Insights](#-current-business-insights)
+- [Business Recommendations](#-business-recommendations)
+- [Repository Structure](#-repository-structure)
+- [Project Status](#-project-status)
+- [Skills Demonstrated](#-skills-demonstrated)
+- [Analytical Concepts](#-analytical-concepts)
+- [Data & Analytical Disclaimer](#-data--analytical-disclaimer)
+- [Project Objective](#-project-objective)
+- [Author](#-author)
+- [Connect](#-connect)
 
-This project analyzes transactional retail data to answer key business questions around:
+---
+
+# 📊 Project Overview
+
+E-commerce businesses generate large volumes of transaction-level data containing information about products, orders, customers, prices, quantities, dates, and geographic markets.
+
+This project analyzes transactional retail data to understand:
 
 - Sales performance
 - Revenue trends
-- Customer behavior
-- Customer value
+- Order volume
+- Average order value
 - Product performance
 - Geographic performance
-- Repeat purchasing
-- RFM customer segmentation
+- Customer purchasing behavior
+- Customer value
+- Purchase frequency
+- Customer recency
+- RFM customer segments
 
 The project follows a complete analytics workflow:
 
 ```text
 Business Problem
-        ↓
+       ↓
+Raw Transaction Data
+       ↓
 Data Validation
-        ↓
+       ↓
 Data Cleaning
-        ↓
-Python EDA
-        ↓
+       ↓
+Feature Engineering
+       ↓
 KPI Analysis
-        ↓
+       ↓
+Python EDA
+       ↓
 Customer Analysis
-        ↓
+       ↓
 RFM Segmentation
-        ↓
-SQL / PostgreSQL Analysis
-        ↓
+       ↓
+PostgreSQL / SQL Analysis
+       ↓
 Power BI Dashboard
-        ↓
+       ↓
 Business Insights
-        ↓
-Recommendations
+       ↓
+Business Recommendations
 ```
 
 ---
 
-# Business Problem
+# 🎯 Business Problem
 
-An e-commerce business needs to understand which customers, products, and markets contribute most to revenue and how purchasing behavior changes over time.
+An e-commerce business needs to understand which products, customers, and markets contribute to revenue and how purchasing behavior changes over time.
 
-This project focuses on answering:
+Raw transaction data alone does not provide a clear business view.
 
-- How much revenue is being generated?
-- How many orders and customers are present?
+This project converts transaction-level records into structured analytical information to answer questions such as:
+
+- How much revenue is generated?
+- How many orders are placed?
+- How many customers are identified?
 - What is the average order value?
-- Which products generate the most revenue?
-- Which countries contribute the most sales?
-- How does revenue change over time?
-- Which customers generate the highest value?
-- Which customers purchase frequently?
-- Which customers are at risk of becoming inactive?
-- Which customer segments should receive targeted marketing attention?
+- Which products or transaction codes generate the most revenue?
+- Which products have the highest sales quantity?
+- Which countries generate the most revenue?
+- How does revenue change by month?
+- Which customers generate the highest revenue?
+- Which customers purchase most frequently?
+- Which customers are recently active?
+- Which customers appear at risk of becoming inactive?
+- Which customer segments contribute the most monetary value?
 
 ---
 
-# Business Objectives
+# 🎯 Business Objectives
 
 The project aims to:
 
-- Measure overall sales performance
-- Identify revenue trends
-- Analyze customer purchasing behavior
-- Identify high-performing products
-- Compare country-level performance
-- Calculate key business KPIs
-- Segment customers using RFM analysis
-- Identify high-value and loyal customers
-- Support customer-targeted business decisions
+- Measure overall sales and revenue performance
+- Analyze monthly and time-based sales trends
+- Measure order volume and average order value
+- Identify high-performing products and transaction codes
+- Analyze geographic revenue performance
+- Understand customer purchasing behavior
+- Identify high-value customers
+- Measure customer purchase frequency
+- Measure customer recency
+- Perform RFM customer segmentation
+- Use PostgreSQL and SQL for business-focused analysis
 - Build an interactive Power BI dashboard
+- Translate analytical findings into actionable business insights
 
 ---
 
-# Dataset
+# 📂 Dataset
 
-**Dataset:** UCI Online Retail Dataset
+## UCI Online Retail Dataset
+
+The project uses the **Online Retail Dataset** from the UCI Machine Learning Repository.
 
 The dataset contains transactional records from a UK-based online retail business.
 
@@ -97,27 +149,43 @@ The dataset contains transactional records from a UK-based online retail busines
 
 | Attribute | Value |
 |---|---:|
-| Transactions | 541,909 |
-| Time Period | December 2010 – December 2011 |
-| Columns | 8 |
+| Original Transactions | **541,909** |
+| Original Columns | **8** |
+| Time Period | **December 2010 – December 2011** |
 | Data Type | Transactional Retail Data |
 
-### Dataset Columns
+### Dataset Source
 
-```text
-InvoiceNo
-StockCode
-Description
-Quantity
-InvoiceDate
-UnitPrice
-CustomerID
-Country
-```
+UCI Machine Learning Repository:
+
+https://archive.ics.uci.edu/dataset/352/online%2Bretail
+
+### Dataset DOI
+
+https://doi.org/10.24432/C5BW33
+
+### Dataset License
+
+The dataset is available under the **Creative Commons Attribution 4.0 International (CC BY 4.0)** license.
 
 ---
 
-# Tools & Technologies
+# 🧾 Dataset Columns
+
+| Column | Description |
+|---|---|
+| `InvoiceNo` | Invoice / transaction identifier |
+| `StockCode` | Product or transaction code |
+| `Description` | Product or transaction description |
+| `Quantity` | Quantity purchased |
+| `InvoiceDate` | Transaction date and time |
+| `UnitPrice` | Price per unit |
+| `CustomerID` | Customer identifier |
+| `Country` | Customer country |
+
+---
+
+# 🛠 Tools & Technologies
 
 ## Programming & Data Analysis
 
@@ -151,7 +219,7 @@ Country
 
 ---
 
-# Analytical Workflow
+# 🔄 Analytical Workflow
 
 ```text
 Raw Transaction Data
@@ -164,134 +232,394 @@ Data Cleaning
         ↓
 Feature Engineering
         ↓
-KPI Analysis
+KPI Development
         ↓
 Exploratory Data Analysis
         ↓
 Customer Analysis
         ↓
-RFM Segmentation
+RFM Analysis
         ↓
-SQL Business Analysis
+RFM Scoring
+        ↓
+Customer Segmentation
+        ↓
+PostgreSQL / SQL Analysis
         ↓
 Power BI Dashboard
         ↓
 Business Insights
+        ↓
+Business Recommendations
 ```
 
 ---
 
-# Data Validation
+# 🔍 Data Validation
 
-The dataset will be inspected for:
+The original dataset was inspected using Python and Pandas before cleaning.
+
+The following data-quality checks were performed:
 
 - Missing values
-- Duplicate transactions
-- Invalid quantities
-- Invalid prices
-- Cancelled invoices
-- Incorrect data types
+- Duplicate records
+- Negative quantities
+- Non-positive unit prices
+- Cancellation transactions
 - Missing customer identifiers
-- Date consistency
+- Missing product descriptions
+- Date and data-type consistency
 
-The objective is to ensure that the dataset is reliable before business analysis begins.
+## Initial Data Quality Findings
+
+| Data Quality Check | Result |
+|---|---:|
+| Original Records | **541,909** |
+| Duplicate Records | **5,268** |
+| Negative Quantity Records | **10,624** |
+| Non-Positive Unit Price Records | **2,517** |
+| Missing Description | **1,454** |
+| Missing CustomerID | **135,080** |
+
+### Cancellation Investigation
+
+A total of **9,288 transaction rows** had invoice numbers beginning with `C`.
+
+Among all negative-quantity transactions:
+
+- **9,288** had invoice numbers beginning with `C`
+- **1,336** negative-quantity rows did not begin with `C`
+
+Further inspection showed that many of the non-cancelled negative-quantity rows were associated with zero prices, missing descriptions, and missing customer identifiers.
 
 ---
 
-# Data Cleaning
+# 🧹 Data Cleaning
 
-The cleaning process will include:
+A separate analytical dataframe, `df_clean`, was created so that the raw dataset remained unchanged.
 
-- Converting `InvoiceDate` into a proper datetime format
-- Handling missing `CustomerID` values
-- Identifying cancelled transactions
-- Checking invalid or negative quantities
-- Checking zero or negative unit prices
-- Removing duplicate records where appropriate
-- Creating a revenue field from quantity and unit price
-- Preparing customer-level data for RFM analysis
+## Cleaning Rules
 
----
+### 1. Remove exact duplicate records
 
-# Feature Engineering
+```python
+df_clean = df_clean.drop_duplicates()
+```
 
-A transaction-level revenue metric will be created:
+### 2. Keep positive quantities
+
+For completed-sales analysis, transactions with non-positive quantities were excluded.
+
+```python
+df_clean = df_clean[df_clean["Quantity"] > 0]
+```
+
+This removes returns, cancellations, and other negative-quantity transaction records from the completed-sales dataset.
+
+### 3. Keep positive unit prices
+
+```python
+df_clean = df_clean[df_clean["UnitPrice"] > 0]
+```
+
+Transactions with zero or negative prices were excluded from the normal sales/revenue dataset.
+
+### 4. Calculate Revenue
+
+Revenue was calculated as:
 
 ```text
 Revenue = Quantity × UnitPrice
 ```
 
-Additional analytical fields may include:
+Python implementation:
 
-- Order date
+```python
+df_clean["Revenue"] = (
+    df_clean["Quantity"] * df_clean["UnitPrice"]
+)
+```
+
+### 5. Reset the index
+
+```python
+df_clean = df_clean.reset_index(drop=True)
+```
+
+---
+
+# ✅ Cleaned Dataset
+
+After applying the cleaning rules:
+
+| Metric | Result |
+|---|---:|
+| Original Records | **541,909** |
+| Cleaned Records | **524,878** |
+| Net Rows Removed | **17,031** |
+| Duplicate Rows Remaining | **0** |
+| Invalid Quantity Rows Remaining | **0** |
+| Invalid Price Rows Remaining | **0** |
+| Missing CustomerID | **132,186** |
+| Missing Description | **0** |
+
+### Data Retention
+
+Approximately **96.86%** of the original transaction records remain in the cleaned sales dataset.
+
+### Files
+
+Raw dataset:
+
+```text
+dataset/Online Retail.xlsx
+```
+
+Cleaned sales dataset:
+
+```text
+dataset/online_retail_clean.csv
+```
+
+The raw dataset is preserved separately for reproducibility.
+
+---
+
+# ⚙️ Feature Engineering
+
+Additional analytical fields were created from `InvoiceDate`.
+
+## Date Features
+
 - Year
 - Month
-- Customer revenue
-- Order frequency
-- Average order value
-- Recency
-- Frequency
-- Monetary value
+- Month Name
+- Day
+- Day Name
+- Hour
+- Week
+- Quarter
+- Day of Week
+- Year-Month
+
+## Revenue Features
+
+- Revenue
+- Revenue Rounded
+
+These fields support time-based business analysis and reporting.
 
 ---
 
-# Key Performance Indicators
+# 📈 Key Performance Indicators
 
-The project will calculate business KPIs including:
+Current KPIs calculated from the cleaned sales dataset:
 
-| KPI | Description |
-|---|---|
-| Total Revenue | Total transaction revenue |
-| Total Orders | Number of unique invoices |
-| Total Customers | Number of unique customers |
-| Total Quantity | Units sold |
-| Average Order Value | Revenue per order |
-| Average Customer Revenue | Revenue per customer |
-| Repeat Customer Rate | Percentage of customers with multiple purchases |
+| KPI | Value |
+|---|---:|
+| Cleaned Sales Records | **524,878** |
+| Total Revenue | **£10,642,110.80** |
+| Total Orders | **19,969** |
+| Identified Customers | **4,338** |
+| Average Order Value | **£533.17** |
 
-These KPIs will form the foundation of the Power BI executive dashboard.
+### KPI Definitions
+
+**Total Revenue**
+
+```text
+Sum of Revenue across cleaned sales transactions
+```
+
+**Total Orders**
+
+```text
+Number of unique InvoiceNo values
+```
+
+**Average Order Value**
+
+```text
+Total Revenue ÷ Unique Orders
+```
+
+### SQL Reconciliation Note
+
+The initial PostgreSQL KPI query currently returns **19,960 unique orders**, compared with **19,969** from the Python analysis.
+
+This difference is being treated as a **data-reconciliation item** and will be investigated before the final KPI figures are considered fully reconciled across Python and PostgreSQL.
+
+The revenue figure from Python is currently:
+
+```text
+£10,642,110.80
+```
 
 ---
 
-# Python Exploratory Data Analysis
+# 📊 Exploratory Data Analysis
 
-Python will be used to analyze:
+Python was used for exploratory analysis across multiple business dimensions.
 
-## Sales Performance
+## Time-Based Analysis
 
-- Revenue trends
+Completed analysis includes:
+
 - Monthly revenue
-- Order volume
-- Quantity trends
-- Average order value
-
-## Customer Analysis
-
-- Customer purchase frequency
-- Customer revenue
-- Repeat customers
-- High-value customers
-- Customer purchasing behavior
-
-## Product Analysis
-
-- Top products by revenue
-- Top products by quantity
-- Product contribution
-- Product demand patterns
-
-## Geographic Analysis
-
+- Monthly order volume
+- Revenue trend over time
+- Order trend over time
 - Revenue by country
-- Orders by country
-- Customer distribution by country
-- Top-performing markets
+- Top transaction codes/products
+- Customer-level analysis
 
 ---
 
-# RFM Customer Segmentation
+# 📅 Sales Performance Analysis
 
-Customer segmentation will be performed using **RFM Analysis**.
+## Monthly Revenue
+
+Monthly revenue was calculated using `Year_Month`.
+
+| Month | Revenue |
+|---|---:|
+| 2010-12 | £821,452.73 |
+| 2011-01 | £689,811.61 |
+| 2011-02 | £522,545.56 |
+| 2011-03 | £716,215.26 |
+| 2011-04 | £536,968.49 |
+| 2011-05 | £769,296.61 |
+| 2011-06 | £760,547.01 |
+| 2011-07 | £718,076.12 |
+| 2011-08 | £757,841.38 |
+| 2011-09 | £1,056,435.19 |
+| 2011-10 | £1,151,263.73 |
+| 2011-11 | £1,503,866.78 |
+| 2011-12 | £637,790.33 |
+
+The strongest observed monthly revenue in the current analysis is:
+
+```text
+November 2011 → £1,503,866.78
+```
+
+---
+
+# 📦 Product & Transaction-Code Analysis
+
+Product-level and transaction-code analysis was performed using:
+
+- `StockCode`
+- `Description`
+- `Quantity`
+- `Revenue`
+
+## Top Transaction Codes / Descriptions by Revenue
+
+| Stock Code | Description | Revenue |
+|---|---|---:|
+| `DOT` | DOTCOM POSTAGE | £206,248.77 |
+| `22423` | REGENCY CAKESTAND 3 TIER | £174,156.54 |
+| `23843` | PAPER CRAFT, LITTLE BIRDIE | £168,469.60 |
+| `85123A` | WHITE HANGING HEART T-LIGHT HOLDER | £104,284.24 |
+| `47566` | PARTY BUNTING | £99,445.23 |
+| `85099B` | JUMBO BAG RED RETROSPOT | £94,159.81 |
+| `23166` | MEDIUM CERAMIC TOP STORAGE JAR | £81,700.92 |
+| `POST` | POSTAGE | £78,101.88 |
+| `M` | Manual | £77,750.27 |
+| `23084` | RABBIT NIGHT LIGHT | £66,870.03 |
+
+### Analytical Note
+
+The ranking contains both conventional merchandise and non-product/service transaction codes such as:
+
+- `DOT` / DOTCOM POSTAGE
+- `POST` / POSTAGE
+- `M` / Manual
+
+These entries will be handled carefully in the final product-performance analysis so that product insights are not confused with service or transaction adjustments.
+
+---
+
+# 📦 Top Transaction Codes by Quantity
+
+The highest observed quantities in the cleaned dataset include:
+
+| Stock Code | Description | Quantity |
+|---|---|---:|
+| `23843` | PAPER CRAFT, LITTLE BIRDIE | 80,995 |
+| `23166` | MEDIUM CERAMIC TOP STORAGE JAR | 78,033 |
+| `84077` | WORLD WAR 2 GLIDERS ASSTD DESIGNS | 54,951 |
+| `85099B` | JUMBO BAG RED RETROSPOT | 48,371 |
+| `85123A` | WHITE HANGING HEART T-LIGHT HOLDER | 37,580 |
+| `22197` | POPCORN HOLDER | 36,749 |
+| `22112` | PACK OF 72 RETROSPOT CAKE CASES | 36,396 |
+| `84879` | ASSORTED COLOUR BIRD ORNAMENT | 36,362 |
+| `23084` | RABBIT NIGHT LIGHT | 30,739 |
+| `22492` | MINI PAINT SET VINTAGE | 26,633 |
+
+The comparison between quantity-based and revenue-based rankings helps distinguish **sales volume** from **revenue contribution**.
+
+---
+
+# 🌍 Geographic Analysis
+
+Revenue was analyzed by country.
+
+## Top Countries by Revenue
+
+| Country | Revenue |
+|---|---:|
+| United Kingdom | **£9,001,744.09** |
+| Netherlands | £285,446.34 |
+| EIRE | £283,140.52 |
+| Germany | £228,678.40 |
+| France | £209,625.37 |
+| Australia | £138,453.81 |
+| Spain | £61,558.56 |
+| Switzerland | £57,067.60 |
+| Belgium | £41,196.34 |
+| Sweden | £38,367.83 |
+
+The United Kingdom represents the dominant revenue market in the current dataset.
+
+---
+
+# 👥 Customer Analysis
+
+Customer-level analysis was performed using records with available `CustomerID`.
+
+The main sales dataset retains transactions without a CustomerID because these transactions can still contribute to overall sales analysis.
+
+A separate customer dataframe was created for customer-specific analysis:
+
+```python
+df_customer = df_clean.dropna(
+    subset=["CustomerID"]
+).copy()
+```
+
+## Current Customer Analysis
+
+```text
+Identified Customers: 4,338
+```
+
+Customer-level metrics include:
+
+- Total Revenue
+- Total Orders
+- Total Quantity
+- Average Order Value
+- Purchase Frequency
+- Recency
+- Monetary Value
+
+---
+
+# 📌 RFM Customer Segmentation
+
+RFM analysis was performed using customer-level transaction data.
 
 RFM stands for:
 
@@ -301,93 +629,246 @@ F → Frequency
 M → Monetary
 ```
 
-### Recency
+## Recency
 
 How recently a customer made a purchase.
 
-### Frequency
+Lower recency values indicate more recent purchasing activity.
+
+## Frequency
 
 How often a customer made purchases.
 
-### Monetary
+Higher frequency values indicate more frequent purchasing behavior.
+
+## Monetary
 
 How much revenue a customer generated.
 
-The three metrics will be converted into scores and combined to create customer segments.
+Higher monetary values indicate greater customer value within the analyzed dataset.
 
 ---
 
-# Planned RFM Segments
+# 📊 RFM Scoring Method
 
-Example customer segments include:
+RFM metrics were converted into scores from **1 to 5**.
+
+### Recency
 
 ```text
-Champions
-Loyal Customers
-Potential Loyalists
-Recent Customers
-At Risk Customers
-Lost Customers
+Lower Recency → Higher Score
 ```
 
-The exact segments will be determined from the analyzed customer behavior.
+### Frequency
+
+```text
+Higher Frequency → Higher Score
+```
+
+### Monetary
+
+```text
+Higher Monetary Value → Higher Score
+```
+
+Quintile-based scoring was used to create the RFM scores.
+
+The final customer-level dataset contains:
+
+```text
+CustomerID
+Recency
+Frequency
+Monetary
+R_Score
+F_Score
+M_Score
+RFM_Score
+RFM_Code
+Segment
+```
+
+The RFM dataset is stored in:
+
+```text
+dataset/customer_rfm.csv
+```
 
 ---
 
-# SQL & PostgreSQL Analysis
+# 🏷️ RFM Customer Segments
 
-The cleaned dataset will be loaded into PostgreSQL for business-focused SQL analysis.
+The current segmentation framework includes:
 
-### Planned SQL Analysis
+- Champions
+- Loyal Customers
+- Potential Loyalists
+- New Customers
+- At Risk
+- Can't Lose Them
+- Hibernating
+- Others
 
-## Sales Analysis
+Segments were assigned using combinations of RFM scores rather than a single monetary metric.
 
+---
+
+# 📊 RFM Segment Results
+
+The current RFM analysis contains:
+
+```text
+4,338 identified customers
+```
+
+## Customer Distribution
+
+| Segment | Customers | Share |
+|---|---:|---:|
+| Others | 1,035 | 23.86% |
+| Champions | 948 | 21.85% |
+| Hibernating | 824 | 18.99% |
+| Loyal Customers | 456 | 10.51% |
+| Potential Loyalists | 425 | 9.80% |
+| At Risk | 287 | 6.62% |
+| New Customers | 190 | 4.38% |
+| Can't Lose Them | 173 | 3.99% |
+
+---
+
+## RFM Segment Performance
+
+| Segment | Customers | Avg Recency | Avg Frequency | Avg Monetary | Revenue Contribution |
+|---|---:|---:|---:|---:|---:|
+| Champions | 948 | 13.13 | 11.17 | £6,068.16 | 64.73% |
+| Loyal Customers | 456 | 39.17 | 5.28 | £1,976.16 | 10.14% |
+| Others | 1,035 | 105.94 | 1.72 | £713.26 | 8.31% |
+| Potential Loyalists | 425 | 17.31 | 2.23 | £1,174.93 | 5.62% |
+| Can't Lose Them | 173 | 124.54 | 5.50 | £2,229.60 | 4.34% |
+| At Risk | 287 | 151.03 | 2.79 | £1,290.53 | 4.17% |
+| Hibernating | 824 | 228.09 | 1.04 | £228.66 | 2.12% |
+| New Customers | 190 | 18.69 | 1.01 | £270.39 | 0.58% |
+
+### Analytical Note
+
+The revenue contribution percentages above are calculated from the **4,338 identified customers included in RFM analysis**, not from all 524,878 cleaned transaction records.
+
+Among these identified customers, the Champions segment contributes the largest share of observed monetary value.
+
+---
+
+# 🐘 PostgreSQL & SQL Analysis
+
+The cleaned sales data and customer RFM data have been loaded into PostgreSQL.
+
+## PostgreSQL Database
+
+```text
+ecommerce_analytics_db
+```
+
+## Main Tables
+
+### `ecommerce_sales`
+
+Transaction-level sales data containing:
+
+- Invoice information
+- Product information
+- Quantity
+- Invoice date
+- Unit price
+- Customer ID
+- Country
+- Revenue
+- Date features
+
+### `customer_rfm`
+
+Customer-level RFM data containing:
+
+- Customer ID
+- Recency
+- Frequency
+- Monetary
+- RFM scores
+- RFM code
+- Customer segment
+
+---
+
+# 🧮 Completed SQL Analysis
+
+Current SQL analysis includes:
+
+- Overall sales KPI analysis
+- Monthly revenue analysis
+- Top transaction-code / product analysis
+- Country revenue analysis
+
+### Current SQL KPI Query
+
+The PostgreSQL KPI analysis includes:
+
+- Total sales records
+- Unique orders
+- Identified customers
 - Total revenue
-- Monthly revenue
-- Order volume
 - Average order value
+
+### Monthly Revenue
+
+Monthly revenue was also reproduced in PostgreSQL.
+
+This provides a Python-to-PostgreSQL consistency check and forms the foundation for additional SQL business analysis.
+
+---
+
+# 🔎 Planned / Next SQL Analysis
+
+The remaining SQL analysis will include:
 
 ## Customer Analysis
 
 - Revenue by customer
 - Orders per customer
+- Customer purchase frequency
 - Repeat customer analysis
 - Top customers
 
-## Product Analysis
-
-- Top products
-- Product revenue
-- Product quantity
-
-## Geographic Analysis
-
-- Revenue by country
-- Orders by country
-- Customer distribution
-
 ## RFM Analysis
 
-- Customer RFM scores
-- Customer segments
 - Segment size
-- Segment revenue contribution
+- Segment revenue
+- Segment contribution
+- Customer-value comparison
+- At-risk customer analysis
+
+## Revenue Analysis
+
+- Revenue contribution
+- Customer concentration
+- Product contribution
+- Geographic performance
+- Repeat-purchase behavior
 
 ---
 
-# Power BI Dashboard
+# 📊 Power BI Dashboard
 
-The final Power BI report will contain three analytical pages.
+The Power BI dashboard is the final business intelligence layer of the project.
 
----
+The dashboard will transform the Python and PostgreSQL analysis into an interactive decision-support report.
 
-## Page 1 — Executive Sales Overview
+## Planned Dashboard Structure
 
-### Purpose
+### Page 1 — Executive Sales Overview
 
-Provide a high-level view of e-commerce business performance.
+Purpose:
 
-### Planned KPIs
+Provide a high-level view of e-commerce performance.
+
+Planned KPIs:
 
 - Total Revenue
 - Total Orders
@@ -395,153 +876,211 @@ Provide a high-level view of e-commerce business performance.
 - Total Quantity
 - Average Order Value
 
-### Planned Visuals
+Planned visuals:
 
-- Monthly Revenue Trend
+- Revenue Trend
+- Order Trend
 - Revenue by Country
-- Top Products
-- Order Volume Trend
-- Customer Distribution
+- Top Products / Transaction Codes
+- Key KPI cards
 
 ---
 
-## Page 2 — Customer & RFM Analysis
+### Page 2 — Customer & RFM Analysis
 
-### Purpose
+Purpose:
 
 Understand customer value and purchasing behavior.
 
-### Planned Analysis
+Planned analysis:
 
+- Customer Count
 - Customer Revenue
 - Purchase Frequency
-- Repeat Customers
-- RFM Segments
-- Customer Segment Contribution
-- High-Value Customers
-- At-Risk Customers
-
-### Planned Visuals
-
 - RFM Segment Distribution
-- Revenue by Customer Segment
-- Customer Count by Segment
-- Top Customers
-- Customer Value Analysis
+- Revenue by Segment
+- Customer Value
+- At-Risk Customers
+- Champions
 
 ---
 
-## Page 3 — Product & Revenue Analysis
+### Page 3 — Product & Geographic Analysis
 
-### Purpose
+Purpose:
 
-Understand product-level and market-level revenue performance.
+Understand product and market performance.
 
-### Planned Analysis
+Planned analysis:
 
-- Top Products by Revenue
-- Top Products by Quantity
-- Revenue by Country
+- Revenue by Product
+- Quantity by Product
 - Product Contribution
-- Monthly Product Trends
-- Revenue Concentration
+- Revenue by Country
+- Orders by Country
+- Geographic Revenue Concentration
+- Revenue Trends
 
 ---
 
-# Planned Business Questions
+# 💡 Current Business Insights
 
-The final analysis will answer questions such as:
+The completed analysis has already identified several patterns.
+
+### 1. Revenue is heavily concentrated in the United Kingdom
+
+The United Kingdom generated approximately:
 
 ```text
-Which months generate the highest revenue?
+£9,001,744.09
+```
 
-Which products contribute the most revenue?
+in the current cleaned dataset, substantially exceeding the revenue generated by other individual countries.
 
-Which countries are the strongest markets?
+---
 
-Which customers generate the highest revenue?
+### 2. November 2011 had the highest observed monthly revenue
 
-What percentage of customers are repeat buyers?
+The highest monthly revenue in the current analysis was:
 
-Which RFM segments generate the most revenue?
-
-Which customers should receive retention or re-engagement campaigns?
-
-Which products or markets require additional attention?
+```text
+November 2011
+£1,503,866.78
 ```
 
 ---
 
-# Business Insights
+### 3. Customer monetary value is concentrated in the Champions segment
 
-The completed analysis will be used to identify:
+Within the 4,338 identified customers included in RFM:
 
-- Revenue growth patterns
-- High-value customer segments
-- Loyal customer groups
-- At-risk customers
-- High-performing products
-- Low-performing products
-- Strong geographic markets
+```text
+Champions
+948 customers
+64.73% of identified-customer monetary value
+```
+
+This indicates a large concentration of observed customer value within this segment.
+
+---
+
+### 4. Hibernating customers show low purchase activity
+
+The current Hibernating segment contains:
+
+```text
+824 customers
+Average Recency ≈ 228 days
+Average Frequency ≈ 1.04 orders
+Average Monetary ≈ £228.66
+```
+
+This segment shows comparatively low purchase frequency and long recency.
+
+---
+
+### 5. At-Risk and Can't-Lose-Them segments contain previously valuable customers
+
+The current analysis shows:
+
+```text
+Can't Lose Them
+173 customers
+Average Frequency ≈ 5.50
+Average Monetary ≈ £2,229.60
+```
+
+and:
+
+```text
+At Risk
+287 customers
+Average Frequency ≈ 2.79
+Average Monetary ≈ £1,290.53
+```
+
+These segments are important for further customer-retention analysis.
+
+---
+
+### 6. Quantity and revenue tell different stories
+
+The products or transaction codes with the highest quantities are not always the same as those generating the highest revenue.
+
+Therefore, product performance should be evaluated using both:
+
+```text
+Quantity Sold
++
+Revenue Generated
+```
+
+rather than using only one metric.
+
+---
+
+# 🎯 Business Recommendations
+
+Final recommendations will be developed after completing the remaining SQL and Power BI stages.
+
+Current analytical areas for recommendations include:
+
+## Customer Retention
+
+Develop targeted retention and re-engagement strategies for customer segments such as:
+
+- At Risk
+- Can't Lose Them
+- Hibernating
+
+## High-Value Customer Management
+
+Analyze Champions and Loyal Customers for:
+
+- Personalized offers
+- Repeat-purchase campaigns
+- Loyalty initiatives
+- Cross-selling opportunities
+
+## Customer Reactivation
+
+Identify inactive customers and evaluate appropriate re-engagement strategies based on previous value and purchasing behavior.
+
+## Product Strategy
+
+Use both revenue and quantity analysis to distinguish:
+
+- High-volume products
+- High-revenue products
+- Lower-performing products
+- Non-product transaction codes
+
+## Geographic Strategy
+
+Use country-level revenue and customer analysis to understand:
+
+- Strong markets
+- Customer concentration
 - Revenue concentration
-- Repeat purchasing behavior
+- Potential areas for further investigation
 
 ---
 
-# Business Recommendations
-
-Recommendations will be based on the final analysis and may include:
-
-### Customer Retention
-
-Develop targeted campaigns for high-value and at-risk customer segments.
-
-### Customer Growth
-
-Encourage repeat purchases through personalized promotions and targeted marketing.
-
-### Product Strategy
-
-Prioritize high-performing products while investigating underperforming products.
-
-### Geographic Strategy
-
-Identify strong markets for expansion and weaker markets requiring further investigation.
-
-### Revenue Strategy
-
-Focus on customer and product segments contributing the greatest share of revenue.
-
----
-
-# Dashboard Preview
-
-Final Power BI screenshots will be added after dashboard development.
-
-Recommended files:
-
-```text
-visuals/
-├── dashboard_overview.png
-├── dashboard_customer_rfm.png
-└── dashboard_product_revenue.png
-```
-
----
-
-# Repository Structure
+# 📁 Repository Structure
 
 ```text
 ecommerce-sales-customer-analytics/
 │
 ├── dataset/
-│   └── Online_Retail.xlsx
+│   ├── Online Retail.xlsx
+│   ├── online_retail_clean.csv
+│   └── customer_rfm.csv
 │
 ├── notebooks/
 │   └── ecommerce_sales_customer_analysis.ipynb
 │
 ├── sql/
-│   └── ecommerce_analysis.sql
+│   └── ecommerce_sales_analysis.sql
 │
 ├── visuals/
 │
@@ -550,132 +1089,202 @@ ecommerce-sales-customer-analytics/
 ├── report/
 │
 ├── .gitignore
+│
 └── README.md
 ```
 
 ---
 
-# Project Status
+# 📌 Project Status
 
 | Component | Status |
 |---|:---:|
 | Repository Setup | ✅ Completed |
-| Dataset Preparation | 🔄 In Progress |
-| Data Validation | ⏳ Pending |
-| Data Cleaning | ⏳ Pending |
-| Feature Engineering | ⏳ Pending |
-| KPI Analysis | ⏳ Pending |
-| Python EDA | ⏳ Pending |
-| Customer Analysis | ⏳ Pending |
-| RFM Segmentation | ⏳ Pending |
-| PostgreSQL Setup | ⏳ Pending |
-| SQL Analysis | ⏳ Pending |
+| GitHub Repository | ✅ Completed |
+| README | ✅ Updated |
+| Dataset Added | ✅ Completed |
+| Python Notebook | ✅ Completed |
+| Initial Data Inspection | ✅ Completed |
+| Data Validation | ✅ Completed |
+| Data Cleaning | ✅ Completed |
+| Revenue Calculation | ✅ Completed |
+| Feature Engineering | ✅ Completed |
+| KPI Analysis | ✅ Completed |
+| Sales EDA | ✅ Completed |
+| Country Analysis | ✅ Completed |
+| Product / Transaction Analysis | ✅ Completed |
+| Customer Analysis | ✅ Completed |
+| RFM Dataset Creation | ✅ Completed |
+| RFM Scoring | ✅ Completed |
+| RFM Customer Segmentation | ✅ Completed |
+| RFM Segment Analysis | ✅ Completed |
+| PostgreSQL Database Setup | ✅ Completed |
+| PostgreSQL Data Import | ✅ Completed |
+| SQL KPI Analysis | ✅ Completed |
+| SQL Monthly Revenue Analysis | ✅ Completed |
+| SQL Product Analysis | ✅ Completed |
+| SQL Country Analysis | ✅ Completed |
+| SQL Customer Analysis | ⏳ Pending |
+| SQL RFM Analysis | ⏳ Pending |
+| SQL Revenue Contribution Analysis | ⏳ Pending |
+| Python / PostgreSQL KPI Reconciliation | ⏳ Pending |
 | Power BI Dashboard | ⏳ Pending |
-| Business Insights | ⏳ Pending |
+| Dashboard Screenshots | ⏳ Pending |
+| Final Business Insights | 🔄 In Progress |
+| Final Recommendations | ⏳ Pending |
 | Final Documentation | ⏳ Pending |
 
 ---
 
-# Skills Demonstrated
+# 🧠 Skills Demonstrated
 
-## Data Analysis
-
-- Data Cleaning
-- Data Validation
-- Exploratory Data Analysis
-- KPI Development
-- Customer Analysis
-- RFM Segmentation
-- Revenue Analysis
-- Product Analysis
-
-## Programming
+## Python
 
 - Python
 - Pandas
 - NumPy
+- DataFrame manipulation
+- GroupBy analysis
+- Data cleaning
+- Data validation
+- Feature engineering
+- KPI calculation
 
-## SQL & Database
+## Data Visualization
+
+- Matplotlib
+- Seaborn
+- Time-series visualization
+- Revenue visualization
+- Customer segmentation visualization
+- Business-oriented charts
+
+## SQL & PostgreSQL
 
 - SQL
 - PostgreSQL
 - pgAdmin
+- Aggregation
+- GROUP BY
+- COUNT
+- COUNT DISTINCT
+- SUM
+- Business KPI queries
+- Monthly analysis
+- Product analysis
+- Geographic analysis
+
+## Customer Analytics
+
+- Customer revenue analysis
+- Purchase frequency
+- Recency analysis
+- Monetary analysis
+- RFM scoring
+- RFM segmentation
 
 ## Business Intelligence
 
 - Power BI
 - DAX
 - Power Query
-- Dashboard Development
+- Data modeling
+- Dashboard development
+- Business reporting
 
-## Development Tools
+## Development & Version Control
 
 - Jupyter Notebook
 - VS Code
 - Git
 - GitHub
+- Repository organization
+- Project documentation
 
 ---
 
-# Analytical Concepts
+# 📚 Analytical Concepts
 
 This project applies:
 
 - Descriptive Analytics
 - Exploratory Data Analysis
-- Customer Segmentation
-- RFM Analysis
+- Data Cleaning
+- Data Validation
+- Feature Engineering
 - KPI Analysis
 - Revenue Analysis
+- Sales Trend Analysis
+- Customer Analytics
 - Product Performance Analysis
 - Geographic Analysis
+- RFM Analysis
+- Customer Segmentation
 - Business Intelligence
 - Data Storytelling
 - Data-Driven Decision Making
 
 ---
 
-# Analytical Disclaimer
+# ⚠️ Data & Analytical Disclaimer
 
-The findings and business recommendations in this project will be based on the analyzed transactional dataset.
+The raw dataset is preserved separately from the cleaned analytical dataset to maintain reproducibility.
 
-Observed customer and product patterns represent relationships within the dataset and should not automatically be interpreted as causal relationships.
+The cleaned sales dataset excludes:
 
-RFM segmentation is used as a descriptive customer segmentation framework and is not a predictive machine-learning model.
+- Exact duplicate transaction rows
+- Non-positive quantity records
+- Non-positive unit-price records
 
-Business recommendations should be validated with additional business context and experimentation before implementation.
+Transactions without `CustomerID` are retained in the main sales-analysis dataset because they can still contribute to overall sales analysis.
+
+Customer-level and RFM analysis use transactions with available customer identifiers.
+
+The RFM framework is a **descriptive customer segmentation method**, not a predictive machine-learning model.
+
+Observed patterns in this project describe relationships within the analyzed dataset and should not automatically be interpreted as causal relationships.
+
+Business recommendations should be validated using additional business context and experimentation before implementation.
 
 ---
 
-# Project Objective
+# 🎯 Project Objective
 
-The objective of this project is to demonstrate a complete practical **Data Analyst workflow** using transactional e-commerce data.
+The objective of this project is to demonstrate a complete practical **Data Analyst workflow** using real-world transactional e-commerce data.
 
 ```text
-Raw Transaction Data
-        ↓
+Raw Data
+    ↓
+Data Validation
+    ↓
 Data Cleaning
-        ↓
-Python Analysis
-        ↓
-KPI Development
-        ↓
-Customer Segmentation
-        ↓
-RFM Analysis
-        ↓
-SQL / PostgreSQL
-        ↓
+    ↓
+Feature Engineering
+    ↓
+Python EDA
+    ↓
+KPI Analysis
+    ↓
+Customer Analysis
+    ↓
+RFM Segmentation
+    ↓
+PostgreSQL
+    ↓
+SQL Business Analysis
+    ↓
 Power BI
-        ↓
+    ↓
 Business Insights
-        ↓
+    ↓
 Business Recommendations
 ```
 
+The project demonstrates the ability to transform raw transaction data into structured business analysis and decision-support outputs.
+
 ---
 
-# Author
+# 👤 Author
 
 ## Uveshkhan Lohani
 
@@ -684,34 +1293,43 @@ Business Recommendations
 Focused on building practical expertise in:
 
 - Data Analytics
-- SQL
 - Python
+- SQL
+- PostgreSQL
 - Power BI
+- Microsoft Excel
 - Business Intelligence
 - Data Visualization
 
 ---
 
-# Connect
+# 🔗 Connect
+
+**GitHub:**  
+https://github.com/Uveshkhan2005
 
 **LinkedIn:**  
-https://www.linkedin.com/in/uveshkhan-lohani-615793273/
+https://www.linkedin.com/in/ Uveshkhan-lohani-615793273/
 
 **Email:**  
 uveshkhanlohani65@gmail.com
 
 ---
 
-# Portfolio Project
+# 📌 Portfolio Project
 
-This project is part of my Data Analytics portfolio and is designed to demonstrate practical experience in transforming transactional data into business insights.
+This project is part of my Data Analytics portfolio and demonstrates practical experience in transforming transactional retail data into business-oriented analytical outputs.
 
 ```text
 Data
  ↓
+Cleaning
+ ↓
 Analysis
  ↓
 Customer Understanding
+ ↓
+SQL / Database Analysis
  ↓
 Business Intelligence
  ↓
@@ -720,6 +1338,6 @@ Decision Support
 
 ---
 
-# Key Takeaway
+# 🚀 Key Takeaway
 
-> **E-Commerce Sales & Customer Analytics demonstrates how transactional retail data can be transformed into actionable business intelligence using Python, SQL, PostgreSQL, RFM segmentation, and Power BI.**
+> **E-Commerce Sales & Customer Analytics demonstrates how transactional retail data can be transformed into meaningful business intelligence using Python, SQL, PostgreSQL, RFM customer segmentation, and Power BI.**
