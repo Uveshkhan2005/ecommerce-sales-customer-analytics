@@ -2,7 +2,7 @@
 
 ### End-to-End Data Analytics Project | Python | SQL | PostgreSQL | Power BI
 
-An end-to-end E-Commerce Analytics project focused on understanding **sales performance, revenue trends, customer purchasing behavior, product performance, geographic performance, and customer value**.
+An end-to-end E-Commerce Analytics project focused on understanding **sales performance, revenue trends, customer purchasing behavior, product performance, geographic performance, customer value, and revenue concentration**.
 
 The project transforms raw transactional retail data into structured business analysis using **Python, Pandas, NumPy, SQL, PostgreSQL, RFM customer segmentation, and Power BI**.
 
@@ -29,6 +29,7 @@ The project transforms raw transactional retail data into structured business an
 - [RFM Customer Segmentation](#-rfm-customer-segmentation)
 - [RFM Segment Results](#-rfm-segment-results)
 - [PostgreSQL & SQL Analysis](#-postgresql--sql-analysis)
+- [SQL Business Findings](#-sql-business-findings)
 - [Power BI Dashboard](#-power-bi-dashboard)
 - [Current Business Insights](#-current-business-insights)
 - [Business Recommendations](#-business-recommendations)
@@ -60,6 +61,7 @@ This project analyzes transactional retail data to understand:
 - Purchase frequency
 - Customer recency
 - RFM customer segments
+- Revenue concentration
 
 The project follows a complete analytics workflow:
 
@@ -83,6 +85,8 @@ Customer Analysis
 RFM Segmentation
        ↓
 PostgreSQL / SQL Analysis
+       ↓
+Business Analysis
        ↓
 Power BI Dashboard
        ↓
@@ -111,9 +115,11 @@ This project converts transaction-level records into structured analytical infor
 - How does revenue change by month?
 - Which customers generate the highest revenue?
 - Which customers purchase most frequently?
+- How many customers are repeat buyers?
 - Which customers are recently active?
 - Which customers appear at risk of becoming inactive?
 - Which customer segments contribute the most monetary value?
+- How concentrated is revenue among high-value customers?
 
 ---
 
@@ -130,7 +136,10 @@ The project aims to:
 - Identify high-value customers
 - Measure customer purchase frequency
 - Measure customer recency
+- Calculate repeat customer rate
 - Perform RFM customer segmentation
+- Measure revenue contribution by customer segment
+- Analyze revenue concentration among high-value customers
 - Use PostgreSQL and SQL for business-focused analysis
 - Build an interactive Power BI dashboard
 - Translate analytical findings into actionable business insights
@@ -244,13 +253,15 @@ RFM Scoring
         ↓
 Customer Segmentation
         ↓
-PostgreSQL / SQL Analysis
+PostgreSQL
         ↓
-Power BI Dashboard
+SQL Business Analysis
         ↓
 Business Insights
         ↓
-Business Recommendations
+Power BI Dashboard
+        ↓
+Final Recommendations
 ```
 
 ---
@@ -281,7 +292,7 @@ The following data-quality checks were performed:
 | Missing Description | **1,454** |
 | Missing CustomerID | **135,080** |
 
-### Cancellation Investigation
+## Cancellation Investigation
 
 A total of **9,288 transaction rows** had invoice numbers beginning with `C`.
 
@@ -381,6 +392,12 @@ Cleaned sales dataset:
 dataset/online_retail_clean.csv
 ```
 
+RFM dataset:
+
+```text
+dataset/customer_rfm.csv
+```
+
 The raw dataset is preserved separately for reproducibility.
 
 ---
@@ -419,40 +436,44 @@ Current KPIs calculated from the cleaned sales dataset:
 |---|---:|
 | Cleaned Sales Records | **524,878** |
 | Total Revenue | **£10,642,110.80** |
-| Total Orders | **19,969** |
+| Total Orders | **19,960** |
 | Identified Customers | **4,338** |
 | Average Order Value | **£533.17** |
+| Repeat Customers | **2,845** |
+| One-Time Customers | **1,493** |
+| Repeat Customer Rate | **65.58%** |
 
 ### KPI Definitions
 
 **Total Revenue**
 
-```text
-Sum of Revenue across cleaned sales transactions
-```
+Sum of revenue across cleaned sales transactions.
 
 **Total Orders**
 
-```text
-Number of unique InvoiceNo values
-```
+Number of unique `InvoiceNo` values after cleaning and reconciliation.
+
+**Identified Customers**
+
+Number of unique customers with an available `CustomerID`.
 
 **Average Order Value**
 
 ```text
-Total Revenue ÷ Unique Orders
+AOV = Total Revenue ÷ Unique Orders
 ```
 
-### SQL Reconciliation Note
-
-The initial PostgreSQL KPI query currently returns **19,960 unique orders**, compared with **19,969** from the Python analysis.
-
-This difference is being treated as a **data-reconciliation item** and will be investigated before the final KPI figures are considered fully reconciled across Python and PostgreSQL.
-
-The revenue figure from Python is currently:
+**Repeat Customer Rate**
 
 ```text
-£10,642,110.80
+Repeat Customer Rate =
+(Repeat Customers ÷ Identified Customers) × 100
+```
+
+The current repeat customer rate is:
+
+```text
+65.58%
 ```
 
 ---
@@ -470,7 +491,7 @@ Completed analysis includes:
 - Revenue trend over time
 - Order trend over time
 - Revenue by country
-- Top transaction codes/products
+- Top transaction codes / products
 - Customer-level analysis
 
 ---
@@ -497,7 +518,7 @@ Monthly revenue was calculated using `Year_Month`.
 | 2011-11 | £1,503,866.78 |
 | 2011-12 | £637,790.33 |
 
-The strongest observed monthly revenue in the current analysis is:
+The highest observed monthly revenue is:
 
 ```text
 November 2011 → £1,503,866.78
@@ -537,7 +558,7 @@ The ranking contains both conventional merchandise and non-product/service trans
 - `POST` / POSTAGE
 - `M` / Manual
 
-These entries will be handled carefully in the final product-performance analysis so that product insights are not confused with service or transaction adjustments.
+These codes will be treated separately in the final product-performance analysis so that product insights are not confused with service or manual transaction activity.
 
 ---
 
@@ -581,7 +602,7 @@ Revenue was analyzed by country.
 | Belgium | £41,196.34 |
 | Sweden | £38,367.83 |
 
-The United Kingdom represents the dominant revenue market in the current dataset.
+The United Kingdom represents the dominant revenue market in the current cleaned dataset.
 
 ---
 
@@ -589,7 +610,7 @@ The United Kingdom represents the dominant revenue market in the current dataset
 
 Customer-level analysis was performed using records with available `CustomerID`.
 
-The main sales dataset retains transactions without a CustomerID because these transactions can still contribute to overall sales analysis.
+The main sales dataset retains transactions without a CustomerID because those transactions can still contribute to overall sales analysis.
 
 A separate customer dataframe was created for customer-specific analysis:
 
@@ -673,7 +694,7 @@ Higher Monetary Value → Higher Score
 
 Quintile-based scoring was used to create the RFM scores.
 
-The final customer-level dataset contains:
+The customer-level dataset contains:
 
 ```text
 CustomerID
@@ -738,22 +759,22 @@ The current RFM analysis contains:
 
 ## RFM Segment Performance
 
-| Segment | Customers | Avg Recency | Avg Frequency | Avg Monetary | Revenue Contribution |
-|---|---:|---:|---:|---:|---:|
-| Champions | 948 | 13.13 | 11.17 | £6,068.16 | 64.73% |
-| Loyal Customers | 456 | 39.17 | 5.28 | £1,976.16 | 10.14% |
-| Others | 1,035 | 105.94 | 1.72 | £713.26 | 8.31% |
-| Potential Loyalists | 425 | 17.31 | 2.23 | £1,174.93 | 5.62% |
-| Can't Lose Them | 173 | 124.54 | 5.50 | £2,229.60 | 4.34% |
-| At Risk | 287 | 151.03 | 2.79 | £1,290.53 | 4.17% |
-| Hibernating | 824 | 228.09 | 1.04 | £228.66 | 2.12% |
-| New Customers | 190 | 18.69 | 1.01 | £270.39 | 0.58% |
+| Segment | Customers | Avg Recency | Avg Frequency | Avg Monetary | Total Revenue | Revenue Contribution |
+|---|---:|---:|---:|---:|---:|---:|
+| Champions | 948 | 13.13 | 11.17 | £6,068.16 | £5,752,618.52 | 64.73% |
+| Loyal Customers | 456 | 39.17 | 5.28 | £1,976.16 | £901,128.00 | 10.14% |
+| Others | 1,035 | 105.94 | 1.72 | £713.26 | £738,228.10 | 8.31% |
+| Potential Loyalists | 425 | 17.31 | 2.23 | £1,174.93 | £499,343.64 | 5.62% |
+| Can't Lose Them | 173 | 124.54 | 5.50 | £2,229.60 | £385,720.16 | 4.34% |
+| At Risk | 287 | 151.03 | 2.79 | £1,290.53 | £370,381.77 | 4.17% |
+| Hibernating | 824 | 228.09 | 1.04 | £228.66 | £188,415.28 | 2.12% |
+| New Customers | 190 | 18.69 | 1.01 | £270.39 | £51,373.42 | 0.58% |
 
 ### Analytical Note
 
 The revenue contribution percentages above are calculated from the **4,338 identified customers included in RFM analysis**, not from all 524,878 cleaned transaction records.
 
-Among these identified customers, the Champions segment contributes the largest share of observed monetary value.
+The Champions segment contributes the largest share of observed customer monetary value.
 
 ---
 
@@ -771,7 +792,7 @@ ecommerce_analytics_db
 
 ### `ecommerce_sales`
 
-Transaction-level sales data containing:
+Transaction-level cleaned sales data containing:
 
 - Invoice information
 - Product information
@@ -799,119 +820,221 @@ Customer-level RFM data containing:
 
 # 🧮 Completed SQL Analysis
 
-Current SQL analysis includes:
+The PostgreSQL and SQL layer currently covers:
 
-- Overall sales KPI analysis
+- Overall business KPIs
 - Monthly revenue analysis
-- Top transaction-code / product analysis
+- Product / transaction-code analysis
 - Country revenue analysis
-
-### Current SQL KPI Query
-
-The PostgreSQL KPI analysis includes:
-
-- Total sales records
-- Unique orders
-- Identified customers
-- Total revenue
-- Average order value
-
-### Monthly Revenue
-
-Monthly revenue was also reproduced in PostgreSQL.
-
-This provides a Python-to-PostgreSQL consistency check and forms the foundation for additional SQL business analysis.
+- Customer revenue analysis
+- Customer order frequency
+- Repeat customer analysis
+- RFM segment analysis
+- RFM revenue contribution
+- At-Risk customer analysis
+- Can't-Lose-Them analysis
+- Champions analysis
+- Customer revenue concentration
+- Python / PostgreSQL KPI reconciliation
 
 ---
 
-# 🔎 Planned / Next SQL Analysis
+# 🔎 SQL Business Findings
 
-The remaining SQL analysis will include:
+## Repeat Customer Analysis
 
-## Customer Analysis
+Among the 4,338 identified customers:
 
-- Revenue by customer
-- Orders per customer
-- Customer purchase frequency
-- Repeat customer analysis
-- Top customers
+```text
+Repeat Customers: 2,845
+One-Time Customers: 1,493
+Repeat Customer Rate: 65.58%
+```
 
-## RFM Analysis
+---
 
-- Segment size
-- Segment revenue
-- Segment contribution
-- Customer-value comparison
-- At-risk customer analysis
+## Customer Revenue
 
-## Revenue Analysis
+Identified customers generated approximately:
 
-- Revenue contribution
-- Customer concentration
-- Product contribution
-- Geographic performance
-- Repeat-purchase behavior
+```text
+£8,887,208.89
+```
+
+This figure represents revenue associated with transactions where `CustomerID` was available.
+
+---
+
+## Revenue Concentration
+
+The top 10% of identified customers consist of:
+
+```text
+434 customers
+```
+
+These customers generated:
+
+```text
+£5,461,374.89
+```
+
+which represents:
+
+```text
+61.45%
+```
+
+of identified-customer revenue.
+
+---
+
+## RFM Segment Revenue
+
+The Champions segment generated:
+
+```text
+£5,752,618.52
+```
+
+and contributed:
+
+```text
+64.73%
+```
+
+of identified-customer RFM revenue.
+
+---
+
+## At-Risk Customers
+
+The At Risk segment contains:
+
+```text
+287 customers
+```
+
+with:
+
+```text
+£370,381.77
+```
+
+in monetary value.
+
+Average recency:
+
+```text
+151.03 days
+```
+
+---
+
+## Can't Lose Them
+
+The Can't Lose Them segment contains:
+
+```text
+173 customers
+```
+
+with:
+
+```text
+£385,720.16
+```
+
+in monetary value.
+
+Average frequency:
+
+```text
+5.50 orders
+```
+
+Average recency:
+
+```text
+124.54 days
+```
+
+---
+
+## Python / PostgreSQL KPI Reconciliation
+
+The unique order count was reconciled between Python and PostgreSQL.
+
+Final reconciled value:
+
+```text
+19,960 unique orders
+```
+
+This is the current project-wide order KPI.
 
 ---
 
 # 📊 Power BI Dashboard
 
-The Power BI dashboard is the final business intelligence layer of the project.
+Power BI will be used as the final business intelligence and visualization layer.
 
-The dashboard will transform the Python and PostgreSQL analysis into an interactive decision-support report.
+The dashboard will transform the completed Python, RFM, PostgreSQL, and SQL analysis into an interactive decision-support report.
 
 ## Planned Dashboard Structure
 
 ### Page 1 — Executive Sales Overview
 
-Purpose:
+#### Purpose
 
-Provide a high-level view of e-commerce performance.
+Provide a high-level view of e-commerce business performance.
 
-Planned KPIs:
+#### Planned KPIs
 
 - Total Revenue
 - Total Orders
-- Total Customers
+- Identified Customers
 - Total Quantity
 - Average Order Value
+- Repeat Customer Rate
 
-Planned visuals:
+#### Planned Visuals
 
-- Revenue Trend
-- Order Trend
+- Monthly Revenue Trend
+- Monthly Order Trend
 - Revenue by Country
-- Top Products / Transaction Codes
-- Key KPI cards
+- Top Products
+- KPI Cards
 
 ---
 
 ### Page 2 — Customer & RFM Analysis
 
-Purpose:
+#### Purpose
 
-Understand customer value and purchasing behavior.
+Understand customer value, purchasing behavior, and customer segmentation.
 
-Planned analysis:
+#### Planned Analysis
 
 - Customer Count
 - Customer Revenue
-- Purchase Frequency
+- Repeat Customer Rate
 - RFM Segment Distribution
-- Revenue by Segment
-- Customer Value
+- Revenue by RFM Segment
+- Customer Monetary Value
 - At-Risk Customers
+- Can't-Lose-Them Customers
 - Champions
 
 ---
 
 ### Page 3 — Product & Geographic Analysis
 
-Purpose:
+#### Purpose
 
-Understand product and market performance.
+Understand product-level and market-level performance.
 
-Planned analysis:
+#### Planned Analysis
 
 - Revenue by Product
 - Quantity by Product
@@ -919,15 +1042,15 @@ Planned analysis:
 - Revenue by Country
 - Orders by Country
 - Geographic Revenue Concentration
-- Revenue Trends
+- Monthly Revenue Trends
 
 ---
 
 # 💡 Current Business Insights
 
-The completed analysis has already identified several patterns.
+The completed analysis has already identified several important patterns.
 
-### 1. Revenue is heavily concentrated in the United Kingdom
+## 1. Revenue is heavily concentrated in the United Kingdom
 
 The United Kingdom generated approximately:
 
@@ -935,38 +1058,78 @@ The United Kingdom generated approximately:
 £9,001,744.09
 ```
 
-in the current cleaned dataset, substantially exceeding the revenue generated by other individual countries.
+in the cleaned sales dataset.
 
 ---
 
-### 2. November 2011 had the highest observed monthly revenue
-
-The highest monthly revenue in the current analysis was:
+## 2. November 2011 recorded the highest monthly revenue
 
 ```text
 November 2011
 £1,503,866.78
 ```
 
+was the highest observed monthly revenue.
+
 ---
 
-### 3. Customer monetary value is concentrated in the Champions segment
+## 3. Repeat purchasing is significant
 
-Within the 4,338 identified customers included in RFM:
+Among identified customers:
 
 ```text
-Champions
-948 customers
-64.73% of identified-customer monetary value
+4,338 identified customers
+2,845 repeat customers
+65.58% repeat customer rate
 ```
-
-This indicates a large concentration of observed customer value within this segment.
 
 ---
 
-### 4. Hibernating customers show low purchase activity
+## 4. Revenue is concentrated among high-value customers
 
-The current Hibernating segment contains:
+The top 10% of identified customers:
+
+```text
+434 customers
+```
+
+generated:
+
+```text
+£5.46M
+```
+
+or:
+
+```text
+61.45%
+```
+
+of identified-customer revenue.
+
+---
+
+## 5. Champions contribute the largest share of RFM revenue
+
+The Champions segment contains:
+
+```text
+948 customers
+```
+
+and contributes:
+
+```text
+64.73%
+```
+
+of identified-customer RFM revenue.
+
+---
+
+## 6. Hibernating customers show low recent activity
+
+The Hibernating segment contains:
 
 ```text
 824 customers
@@ -979,33 +1142,17 @@ This segment shows comparatively low purchase frequency and long recency.
 
 ---
 
-### 5. At-Risk and Can't-Lose-Them segments contain previously valuable customers
+## 7. At-Risk and Can't-Lose-Them customers require further retention analysis
 
-The current analysis shows:
+The current RFM segmentation identifies customers who have relatively long recency periods while still showing meaningful historical purchase activity or monetary value.
 
-```text
-Can't Lose Them
-173 customers
-Average Frequency ≈ 5.50
-Average Monetary ≈ £2,229.60
-```
-
-and:
-
-```text
-At Risk
-287 customers
-Average Frequency ≈ 2.79
-Average Monetary ≈ £1,290.53
-```
-
-These segments are important for further customer-retention analysis.
+These segments will be examined further when developing final business recommendations.
 
 ---
 
-### 6. Quantity and revenue tell different stories
+## 8. Quantity and revenue measure different aspects of product performance
 
-The products or transaction codes with the highest quantities are not always the same as those generating the highest revenue.
+The products or transaction codes with the highest quantities are not necessarily the same as those generating the highest revenue.
 
 Therefore, product performance should be evaluated using both:
 
@@ -1015,54 +1162,52 @@ Quantity Sold
 Revenue Generated
 ```
 
-rather than using only one metric.
-
 ---
 
 # 🎯 Business Recommendations
 
-Final recommendations will be developed after completing the remaining SQL and Power BI stages.
+Final recommendations will be completed alongside the Power BI dashboard and final business interpretation.
 
-Current analytical areas for recommendations include:
+Current analytical areas include:
 
 ## Customer Retention
 
-Develop targeted retention and re-engagement strategies for customer segments such as:
+Develop targeted retention and re-engagement strategies for:
 
-- At Risk
-- Can't Lose Them
-- Hibernating
+- At Risk customers
+- Can't Lose Them customers
+- Hibernating customers
 
 ## High-Value Customer Management
 
 Analyze Champions and Loyal Customers for:
 
 - Personalized offers
-- Repeat-purchase campaigns
 - Loyalty initiatives
+- Repeat-purchase campaigns
 - Cross-selling opportunities
 
 ## Customer Reactivation
 
-Identify inactive customers and evaluate appropriate re-engagement strategies based on previous value and purchasing behavior.
+Identify inactive customers based on recency and historical value and evaluate appropriate re-engagement strategies.
 
 ## Product Strategy
 
-Use both revenue and quantity analysis to distinguish:
+Separate conventional products from non-product transaction codes and evaluate:
 
 - High-volume products
 - High-revenue products
 - Lower-performing products
-- Non-product transaction codes
+- Service / postage / manual transaction codes
 
 ## Geographic Strategy
 
-Use country-level revenue and customer analysis to understand:
+Use country-level revenue, customer count, and order analysis to understand:
 
 - Strong markets
-- Customer concentration
 - Revenue concentration
-- Potential areas for further investigation
+- Customer concentration
+- Opportunities requiring further investigation
 
 ---
 
@@ -1124,10 +1269,13 @@ ecommerce-sales-customer-analytics/
 | SQL Monthly Revenue Analysis | ✅ Completed |
 | SQL Product Analysis | ✅ Completed |
 | SQL Country Analysis | ✅ Completed |
-| SQL Customer Analysis | ⏳ Pending |
-| SQL RFM Analysis | ⏳ Pending |
-| SQL Revenue Contribution Analysis | ⏳ Pending |
-| Python / PostgreSQL KPI Reconciliation | ⏳ Pending |
+| SQL Customer Analysis | ✅ Completed |
+| SQL Repeat Customer Analysis | ✅ Completed |
+| SQL RFM Analysis | ✅ Completed |
+| SQL Revenue Contribution Analysis | ✅ Completed |
+| SQL Revenue Concentration Analysis | ✅ Completed |
+| Python / PostgreSQL KPI Reconciliation | ✅ Completed |
+| Power BI Data Model | ⏳ Pending |
 | Power BI Dashboard | ⏳ Pending |
 | Dashboard Screenshots | ⏳ Pending |
 | Final Business Insights | 🔄 In Progress |
@@ -1169,19 +1317,25 @@ ecommerce-sales-customer-analytics/
 - COUNT
 - COUNT DISTINCT
 - SUM
+- Common Table Expressions
+- Window Functions
 - Business KPI queries
 - Monthly analysis
 - Product analysis
 - Geographic analysis
+- Customer analysis
+- RFM analysis
 
 ## Customer Analytics
 
 - Customer revenue analysis
 - Purchase frequency
+- Repeat customer analysis
 - Recency analysis
 - Monetary analysis
 - RFM scoring
 - RFM segmentation
+- Customer revenue concentration
 
 ## Business Intelligence
 
@@ -1213,11 +1367,13 @@ This project applies:
 - Data Validation
 - Feature Engineering
 - KPI Analysis
-- Revenue Analysis
 - Sales Trend Analysis
+- Revenue Analysis
 - Customer Analytics
 - Product Performance Analysis
 - Geographic Analysis
+- Repeat Customer Analysis
+- Revenue Concentration Analysis
 - RFM Analysis
 - Customer Segmentation
 - Business Intelligence
@@ -1240,17 +1396,21 @@ Transactions without `CustomerID` are retained in the main sales-analysis datase
 
 Customer-level and RFM analysis use transactions with available customer identifiers.
 
-The RFM framework is a **descriptive customer segmentation method**, not a predictive machine-learning model.
+RFM is a **descriptive customer segmentation framework**, not a predictive machine-learning model.
+
+The revenue contribution figures for RFM segments are calculated from the **4,338 identified customers included in the RFM dataset**, rather than from all transaction records.
+
+The identified-customer revenue figure differs from total transaction revenue because transactions without `CustomerID` are excluded from customer-level analysis.
 
 Observed patterns in this project describe relationships within the analyzed dataset and should not automatically be interpreted as causal relationships.
 
-Business recommendations should be validated using additional business context and experimentation before implementation.
+Business recommendations should be validated using additional business context, experimentation, and operational considerations before implementation.
 
 ---
 
 # 🎯 Project Objective
 
-The objective of this project is to demonstrate a complete practical **Data Analyst workflow** using real-world transactional e-commerce data.
+The objective of this project is to demonstrate a complete practical **Data Analyst workflow** using transactional e-commerce data.
 
 ```text
 Raw Data
@@ -1273,9 +1433,9 @@ PostgreSQL
     ↓
 SQL Business Analysis
     ↓
-Power BI
-    ↓
 Business Insights
+    ↓
+Power BI
     ↓
 Business Recommendations
 ```
@@ -1309,7 +1469,7 @@ Focused on building practical expertise in:
 https://github.com/Uveshkhan2005
 
 **LinkedIn:**  
-https://www.linkedin.com/in/ Uveshkhan-lohani-615793273/
+https://www.linkedin.com/in/uveshkhan-lohani-615793273/
 
 **Email:**  
 uveshkhanlohani65@gmail.com
