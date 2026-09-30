@@ -1,6 +1,6 @@
 # 🛒 E-Commerce Sales & Customer Analytics
 
-**End-to-End Data Analytics Project | Python | SQL | PostgreSQL | Power BI | RFM**
+### End-to-End Data Analytics Project | Python | SQL | PostgreSQL | Power BI | RFM
 
 An end-to-end **Data Analytics project** focused on understanding e-commerce sales performance, customer purchasing behavior, product performance, geographic performance, customer value, repeat purchasing, and revenue concentration.
 
@@ -10,46 +10,50 @@ The project transforms raw transactional retail data into structured business an
 
 ## 📌 Table of Contents
 
-1. [📊 Project Overview](#-project-overview)
-2. [🎯 Business Problem](#-business-problem)
-3. [🎯 Business Objectives](#-business-objectives)
-4. [📂 Dataset](#-dataset)
-5. [🛠️ Tools & Technologies](#️-tools--technologies)
-6. [🔄 Project Workflow](#-project-workflow)
-7. [🔍 Data Validation](#-data-validation)
-8. [🧹 Data Cleaning](#-data-cleaning)
-9. [✅ Cleaned Dataset](#-cleaned-dataset)
-10. [⚙️ Feature Engineering](#️-feature-engineering)
-11. [📈 Key Performance Indicators](#-key-performance-indicators)
-12. [📊 Exploratory Data Analysis](#-exploratory-data-analysis)
-13. [📅 Sales Performance Analysis](#-sales-performance-analysis)
-14. [📦 Product Analysis](#-product-analysis)
-15. [🌍 Geographic Analysis](#-geographic-analysis)
-16. [👥 Customer Analysis](#-customer-analysis)
-17. [📌 RFM Customer Segmentation](#-rfm-customer-segmentation)
-18. [📊 RFM Scoring Method](#-rfm-scoring-method)
-19. [🏷️ RFM Customer Segments](#️-rfm-customer-segments)
-20. [📊 RFM Segment Results](#-rfm-segment-results)
-21. [🐘 PostgreSQL & SQL Analysis](#-postgresql--sql-analysis)
-22. [🧮 Completed SQL Analysis](#-completed-sql-analysis)
-23. [🔎 SQL Business Findings](#-sql-business-findings)
-24. [📊 Power BI Dashboard](#-power-bi-dashboard)
-25. [📄 Page 1 — Executive Overview](#-page-1--executive-overview)
-26. [📄 Page 2 — Customer & RFM Analytics](#-page-2--customer--rfm-analytics)
-27. [📄 Page 3 — Revenue & Product Analysis](#-page-3--revenue--product-analysis)
-28. [🎨 Power BI Dashboard Design](#-power-bi-dashboard-design)
-29. [💡 Business Insights](#-business-insights)
-30. [🎯 Business Recommendations](#-business-recommendations)
-31. [📁 Repository Structure](#-repository-structure)
-32. [📌 Project Status](#-project-status)
-33. [🧠 Skills Demonstrated](#-skills-demonstrated)
-34. [📚 Analytical Concepts](#-analytical-concepts)
-35. [⚠️ Data & Analytical Disclaimer](#️-data--analytical-disclaimer)
-36. [🎯 Project Objective](#-project-objective)
-37. [👤 Author](#-author)
-38. [🔗 Connect](#-connect)
-39. [📌 Portfolio Project](#-portfolio-project)
-40. [🚀 Key Takeaway](#-key-takeaway)
+- [Project Overview](#-project-overview)
+- [Business Problem](#-business-problem)
+- [Business Objectives](#-business-objectives)
+- [Dataset](#-dataset)
+- [Dataset Fields](#-dataset-fields)
+- [Tools & Technologies](#-tools--technologies)
+- [Project Workflow](#-project-workflow)
+- [Data Validation](#-data-validation)
+- [Data Cleaning](#-data-cleaning)
+- [Cleaned Dataset](#-cleaned-dataset)
+- [Feature Engineering](#-feature-engineering)
+- [Key Performance Indicators](#-key-performance-indicators)
+- [Exploratory Data Analysis](#-exploratory-data-analysis)
+- [Sales Performance Analysis](#-sales-performance-analysis)
+- [Product Analysis](#-product-analysis)
+- [Geographic Analysis](#-geographic-analysis)
+- [Customer Analysis](#-customer-analysis)
+- [RFM Customer Segmentation](#-rfm-customer-segmentation)
+- [RFM Scoring Method](#-rfm-scoring-method)
+- [RFM Customer Segments](#-rfm-customer-segments)
+- [RFM Segment Results](#-rfm-segment-results)
+- [PostgreSQL & SQL Analysis](#-postgresql--sql-analysis)
+- [Completed SQL Analysis](#-completed-sql-analysis)
+- [SQL Business Findings](#-sql-business-findings)
+- [Power BI Dashboard](#-power-bi-dashboard)
+- [Page 1 — Executive Overview](#-page-1--executive-overview)
+- [Page 2 — Customer & RFM Analytics](#-page-2--customer--rfm-analytics)
+- [Page 3 — Revenue & Product Analysis](#-page-3--revenue--product-analysis)
+- [Power BI Dashboard Design](#-power-bi-dashboard-design)
+- [Dashboard Preview](#-dashboard-preview)
+- [Dashboard Demo](#-dashboard-demo)
+- [Business Insights](#-business-insights)
+- [Business Recommendations](#-business-recommendations)
+- [Repository Structure](#-repository-structure)
+- [Project Status](#-project-status)
+- [Skills Demonstrated](#-skills-demonstrated)
+- [Analytical Concepts](#-analytical-concepts)
+- [Data & Analytical Disclaimer](#-data--analytical-disclaimer)
+- [Project Objective](#-project-objective)
+- [Project Outcome](#-project-outcome)
+- [Author](#-author)
+- [Connect](#-connect)
+- [Portfolio Project](#-portfolio-project)
+- [Key Takeaway](#-key-takeaway)
 
 ---
 
@@ -149,7 +153,9 @@ The dataset contains transactional records from a UK-based online retail busines
 
 [https://doi.org/10.24432/C5BW33](https://doi.org/10.24432/C5BW33)
 
-### Dataset Fields
+---
+
+## 📋 Dataset Fields
 
 | Column | Description |
 |---|---|
@@ -216,6 +222,8 @@ Therefore, this project focuses on:
 ---
 
 ## 🔄 Project Workflow
+
+The project follows a structured Data Analytics workflow:
 
 ```text
 Raw Transaction Data
@@ -1170,6 +1178,38 @@ The dashboard follows a consistent professional visual style.
 
 ---
 
+## 🖼️ Dashboard Preview
+
+The final Power BI dashboard contains three analytical pages designed to present sales performance, customer behavior, RFM segmentation, and revenue insights in a clear business-focused format.
+
+### Page 1 — Executive Overview
+
+![Page 1 — Executive Overview](visuals/Page_1.png)
+
+---
+
+### Page 2 — Customer & RFM Analytics
+
+![Page 2 — Customer & RFM Analytics](visuals/Page_2.png)
+
+---
+
+### Page 3 — Revenue & Product Analysis
+
+![Page 3 — Revenue & Product Analysis](visuals/Page_3.png)
+
+---
+
+## 🎥 Dashboard Demo
+
+A walkthrough recording of the completed Power BI dashboard is included in the repository.
+
+[▶️ Watch Dashboard Demo](visuals/E-Commerce_Sales_Video.mp4)
+
+The recording demonstrates the three completed Power BI dashboard pages and their interactive analytical views.
+
+---
+
 ## 💡 Business Insights
 
 The completed analysis identified several important patterns.
@@ -1343,14 +1383,16 @@ ecommerce-sales-customer-analytics/
 ├── sql/
 │   └── ecommerce_sales_analysis.sql
 │
-├── visuals/
-│
 ├── powerbi/
+│   └── ecommerce_sales_customer_analytics.pbix
 │
-├── report/
+├── visuals/
+│   ├── Page_1.png
+│   ├── Page_2.png
+│   ├── Page_3.png
+│   └── E-Commerce_Sales_Video.mp4
 │
 ├── .gitignore
-│
 └── README.md
 ```
 
@@ -1396,6 +1438,8 @@ ecommerce-sales-customer-analytics/
 | Power BI Page 2 | ✅ Completed |
 | Power BI Page 3 | ✅ Completed |
 | Power BI Dashboard | ✅ Completed |
+| Dashboard Screenshots | ✅ Completed |
+| Dashboard Demo Video | ✅ Completed |
 | Business Insights | ✅ Completed |
 | Business Recommendations | ✅ Completed |
 | Final Documentation | ✅ Completed |
@@ -1549,33 +1593,57 @@ The objective of this project is to demonstrate a complete practical **Data Anal
 
 ```text
 Raw Data
-    ↓
+   ↓
 Data Validation
-    ↓
+   ↓
 Data Cleaning
-    ↓
+   ↓
 Feature Engineering
-    ↓
+   ↓
 Python EDA
-    ↓
+   ↓
 KPI Analysis
-    ↓
+   ↓
 Customer Analysis
-    ↓
+   ↓
 RFM Segmentation
-    ↓
+   ↓
 PostgreSQL
-    ↓
+   ↓
 SQL Business Analysis
-    ↓
+   ↓
 Power BI
-    ↓
+   ↓
 Business Insights
-    ↓
+   ↓
 Business Recommendations
 ```
 
 The project demonstrates the ability to transform raw transaction data into structured business analysis and decision-support outputs.
+
+---
+
+## 🏆 Project Outcome
+
+This project demonstrates the ability to work through a complete Data Analytics lifecycle:
+
+- Understand a business problem
+- Inspect transactional data
+- Identify data-quality issues
+- Clean and prepare analytical data
+- Engineer useful analytical features
+- Calculate business KPIs
+- Perform exploratory data analysis
+- Analyze products and geographic markets
+- Analyze customer purchasing behavior
+- Perform RFM customer segmentation
+- Conduct PostgreSQL and SQL business analysis
+- Reconcile analytical results across tools
+- Build interactive Power BI dashboards
+- Communicate findings through visualizations
+- Translate analysis into business recommendations
+
+The project combines technical analysis with business-oriented interpretation and demonstrates practical skills relevant to **Data Analyst, Junior Data Analyst, and BI Analyst** roles.
 
 ---
 
@@ -1616,7 +1684,7 @@ Focused on building practical expertise in:
 
 ## 📌 Portfolio Project
 
-This project is part of my Data Analytics portfolio and demonstrates practical experience in transforming transactional retail data into business-oriented analytical outputs.
+This project is part of my **Data Analytics portfolio** and demonstrates practical experience in transforming transactional retail data into business-oriented analytical outputs.
 
 The project demonstrates the complete journey:
 
